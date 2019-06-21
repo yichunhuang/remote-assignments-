@@ -93,6 +93,24 @@
 				]
 			})
 		</script>
+
+		<!-- assignment 5 -->
+		<script>
+			function twoSum(nums, target){
+				// Create the hashmap
+				var map = {};
+				// Add keys to the hashmap
+				for( var i = 0; i < nums.length; i++) {
+					var complement = target - nums[i];
+
+					if (complement in map)
+						return [map[complement], i];
+					map[nums[i]] = i;
+				}
+			}
+			var ans = twoSum([2, 7, 11, 15], 13);
+			document.write(ans);
+		</script>
 	</body>
 
 
