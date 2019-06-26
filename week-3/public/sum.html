@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta name="viewport" content="width=device-width; initial-scale=1.0; maximum-scale=1.0; user-scalable=0;">
+		<meta charset="utf-8">
+		<script src="http://code.jquery.com/jquery-1.6.2.min.js"></script>		
+
+	</head>
+
+	<body>
+		<div id="getdata">
+				<label>輸入正整數：</label><input type="text" id="number" name="number" /><br>
+				<input type="submit" value="計算" /><br>
+				<p id="answer"> </p>
+		</div>
+		<script type="text/javascript">
+			const Http = new XMLHttpRequest();
+			const url='http://localhost:3000/getData?number=10';
+			Http.open("GET", url);
+			Http.send();
+
+			Http.onreadystatechange = (e) => {
+			  document.getElementById("answer").innerHTML = Http.responseText;
+			}
+		</script>
+	</body>
+	<script type="text/javascript">
+		   $('#getdata input[type="submit"]').click(function(e){						   	 
+			   e.preventDefault();
+			   $.ajax({
+						type: 'POST',
+						data: {
+							 'number': $("#number").val()
+			             },
+	                    url: '/getData',						
+	                    success: function(data) {
+	                        document.getElementById("answer").innerHTML = data;
+	                    }
+	                });
+		    });	 
+	</script>
+
+
+</html>
