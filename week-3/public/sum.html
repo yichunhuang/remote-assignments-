@@ -3,14 +3,13 @@
 	<head>
 		<meta name="viewport" content="width=device-width; initial-scale=1.0; maximum-scale=1.0; user-scalable=0;">
 		<meta charset="utf-8">
-		<script src="http://code.jquery.com/jquery-1.6.2.min.js"></script>		
 
 	</head>
 
 	<body>
 		<div id="getdata">
 				<label>輸入正整數：</label><input type="text" id="number" name="number" /><br>
-				<input type="submit" value="計算" /><br>
+				<input type="submit" onclick="calculate()" value="計算" /><br>
 				<p id="answer"> </p>
 		</div>
 		<script type="text/javascript">
@@ -23,22 +22,22 @@
 			  document.getElementById("answer").innerHTML = Http.responseText;
 			}
 		</script>
+		<script type="text/javascript">
+		   function calculate(){		
+			    var element = document.getElementById("number");
+			    var formData = element.name + '=' + element.value;
+		   		var http = new XMLHttpRequest();
+		   	    var url= '/getData';
+				console.log(formData);
+				http.open("POST", url, true);
+				http.setRequestHeader('Content-type', 'application/x-www-form-urlencoded');
+				http.onreadystatechange = (e) => {
+							  document.getElementById("answer").innerHTML = http.responseText;
+				}
+				http.send(formData);
+		    }
+		</script>
 	</body>
-	<script type="text/javascript">
-		   $('#getdata input[type="submit"]').click(function(e){						   	 
-			   e.preventDefault();
-			   $.ajax({
-						type: 'POST',
-						data: {
-							 'number': $("#number").val()
-			             },
-	                    url: '/getData',						
-	                    success: function(data) {
-	                        document.getElementById("answer").innerHTML = data;
-	                    }
-	                });
-		    });	 
-	</script>
 
 
 </html>
