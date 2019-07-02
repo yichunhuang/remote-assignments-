@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<style>
+		table, th, td {
+		  border: 1px solid black;
+		}
+	</style>
+</head>
+<body>
+
+<!-- assignment 1 -->
+<script>
+	function delayedResult(n1, n2, delayTime, callback){
+		setTimeout(callback(n1+n2), delayTime);
+	}
+
+	delayedResult(4, 5, 3000, function(result){console.log(result);});
+
+	delayedResult(-5, 10, 2000, function(result){window.alert(result);});
+</script>
+
+<!-- assignment2 -->
+<table style="width:50%" >
+  <thead>
+	  <tr>
+	    <th>name</th>
+	    <th>price</th> 
+	    <th>description</th>
+	  </tr>
+  </thead>
+  <tbody id="render_table">
+  </tbody>
+</table>
+<script>
+	function ajax(src, callback){
+		var xmlhttp = new XMLHttpRequest();
+    	xmlhttp.onreadystatechange = function() {
+	        if (xmlhttp.readyState == 4 && xmlhttp.status == 200) {
+	            console.log('responseText:' + xmlhttp.responseText);
+	            try {
+	                var data = JSON.parse(xmlhttp.responseText);
+	            } catch(err) {
+	                console.log(err.message + " in " + xmlhttp.responseText);
+	                return;
+	            }
+	            callback(data);
+	        }
+    	};
+ 
+	    xmlhttp.open("GET", src, true);
+	    xmlhttp.send();
+	}
+
+	function render(data){
+		var table = document.getElementById("render_table");
+		for (var i = 0; i < data.length; i++) {
+			var tr = document.createElement("TR");
+			
+			var name_td = document.createElement("TD");
+			var name_text = document.createTextNode(data[i]["name"]);
+			name_td.appendChild(name_text);
+
+			var price_td = document.createElement("TD");
+			var price_text = document.createTextNode(data[i]["price"]);
+			price_td.appendChild(price_text);
+
+			var description_td = document.createElement("TD");
+			var description_text = document.createTextNode(data[i]["description"]);
+			description_td.appendChild(description_text);
+
+			tr.append(name_td, price_td, description_td);	
+			table.appendChild(tr);  
+		}
+	}
+
+	ajax("https://cwpeng.github.io/live-records-samples/data/products.json", function(response){ render(response);
+	});
+</script>
+</body>
+</html>

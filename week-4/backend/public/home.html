@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<style>
+		.login-form {
+			width: 300px;
+			margin: 0 auto;
+			font-family: Tahoma, Geneva, sans-serif;
+		}
+		.login-form h1 {
+			text-align: center;
+			color: #4d4d4d;
+			font-size: 24px;
+			padding: 20px 0 20px 0;
+		}
+		
+		.login-form input[type="text"] {
+			width: 100%;
+			padding: 15px;
+			border: 1px solid #dddddd;
+			margin-bottom: 15px;
+			box-sizing:border-box;
+		}
+		.login-form input[type="submit"] {
+			width: 100%;
+			padding: 15px;
+			background-color: #535b63;
+			border: 0;
+			box-sizing: border-box;
+			cursor: pointer;
+			font-weight: bold;
+			margin-top: 15px;
+			color: #ffffff;
+		}
+		</style>
+	</head>
+	<body>
+		<div class="login-form">
+			<h1>HOME</h1>
+			<div id="sign_in">
+				<label>帳號</label><input type="text" id="email" name="email" /><br>
+				<label>密碼</label><input type="text" id="password" name="password" /><br>
+				<input type="submit" onclick="sign_in()" value="Sign In" /><br>
+				<input type="submit" onclick="sign_up()" value="Sign Up" /><br>
+				<p id="answer"> </p>
+			</div>
+			<p id="fail_message"> </p>
+		</div>
+		<script type="text/javascript">
+		   function sign_in(){		
+			    var email = document.getElementById("email");
+			    var password = document.getElementById("password");
+			    var formData = email.name + '=' + email.value + '&' + password.name + '=' +password.value;
+		   		var http = new XMLHttpRequest();
+		   	    var url= '/sign_in';
+				console.log(formData);
+				http.open("POST", url, true);
+				http.setRequestHeader('Content-type', 'application/x-www-form-urlencoded');
+				http.onreadystatechange = (e) => {
+					if (http.responseText == 'success')
+						window.location.replace("/member.html");
+					else
+						document.getElementById("fail_message").innerHTML = http.responseText;
+				}
+				http.send(formData);
+		    }
+
+		    function sign_up(){		
+			    var email = document.getElementById("email");
+			    var password = document.getElementById("password");
+			    var formData = email.name + '=' + email.value + '&' + password.name + '=' +password.value;
+		   		var http = new XMLHttpRequest();
+		   	    var url= '/sign_up';
+				console.log(formData);
+				http.open("POST", url, true);
+				http.setRequestHeader('Content-type', 'application/x-www-form-urlencoded');
+				http.onreadystatechange = (e) => {
+					if (http.responseText == 'success')
+						window.location.replace("/member.html");
+					else
+						document.getElementById("fail_message").innerHTML = http.responseText;
+				}
+				http.send(formData);
+		    }
+		</script>
+	</body>
+</html>
