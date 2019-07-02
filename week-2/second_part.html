@@ -1,0 +1,239 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta name="viewport" content="width=device-width; initial-scale=1.0; maximum-scale=1.0; user-scalable=0;">
+		<style>
+			/* The navbar container */
+			.topnav {
+			  overflow: hidden;
+			  background-color: #DCDCDC;
+			}
+
+			/* Navbar links */
+			.topnav a {
+			  float: right;
+			  display: block;
+			  color: black;
+			  text-align: center;
+			  padding: 14px 16px;
+			}
+
+			/* Links - change color on hover */
+			.topnav a:hover {
+			  background-color: #ddd;
+			  color: black;
+			}	
+
+			.icon {
+			  display: none;
+			}
+
+			.header {
+				background-color: #F0F8FF;
+				margin-top: 0px;
+
+			}
+
+			.title {
+				text-align: center;
+			}
+
+			.message {
+				padding: 50px 50px;
+			}
+
+			.content {
+				background: #8a99a8;
+				width: 49%;
+				height: 300;
+				margin-bottom: 20px;
+			}
+
+			.left {
+				float: left;
+				margin-right: 10px;
+			}
+
+			.right {
+				float: right;
+			}
+			
+			.button {
+			    background-color:lightblue;
+			    padding: 15px 32px;
+			    text-align: center;
+			    font-size: 16px;
+			    margin-bottom: 20px;
+			}
+
+			.mobile {
+				position: fixed;
+  				top: 0;
+  				right: 0;
+  				width: 200px;
+  				height: 300px;
+  				font-size: 20px;
+				background-color:white;
+				border-left-style: groove;
+				border-bottom-style: groove;
+				border-width: thin;
+				padding-left: 10px;
+				display: none;
+			}
+
+			.close_button {
+				position: fixed;
+  				top: 0;
+  				right: 20px;
+			}
+
+			.more_boxes {
+				display: none;
+			}
+			@media screen and (min-width: 1200px) {
+				.total {
+					width: 1200px;
+					margin-left: auto ;
+	  				margin-right: auto ;
+				}
+			}
+
+			@media screen and (min-width: 800px) and (max-width: 1200px) {
+				.total {
+					overflow:auto; 
+					width:90%;
+					margin-left: auto ;
+	  				margin-right: auto ;
+				}
+			}
+
+			@media screen and (min-width: 500px) and (max-width: 800px) {
+				.total {
+					overflow:auto; 
+					width:90%;
+					margin-left: auto ;
+	  				margin-right: auto ;
+				}
+				.topnav a:not(:first-child) {display: none;}
+				.icon {
+				    float: right;
+				    display: block;
+				}
+			}
+
+			@media screen and (max-width: 500px) {
+				.total {
+					overflow:auto; 
+					width:90%;
+					margin-left: auto ;
+	  				margin-right: auto ;
+				}
+
+				.content {
+					background: #8a99a8;
+					width: 100%;
+					height: 300;
+					margin-bottom:20px;
+				}
+				.left {
+					float: center;
+				}
+
+				.right {
+					float: center;
+				}
+				.topnav a:not(:first-child) {display: none;}
+				.icon {
+				    float: right;
+				    display: block;
+				}
+			}
+			body {    
+			    margin: 0 !important;
+			    padding: 0 !important;
+			}
+		</style>
+	</head>
+
+	<body>
+		<div class="topnav">
+			<img src="https://images.ecosia.org/9aGic_r79U0KS9sCoV28VkavGRQ=/0x390/smart/https%3A%2F%2Fcdn1.iconfinder.com%2Fdata%2Ficons%2Fpet%2F500%2FDog-512.png"  width="55" height="55">
+			<a href="#">Item 1</a>
+			<a href="#">Item 2</a>
+			<a href="#">Item 3</a>
+			<a href="#">Item 4</a>
+			<img src="https://images.ecosia.org/MmhkPRa1xFkwW7uZHUBmhxFMFM8=/0x390/smart/https%3A%2F%2Fcdn4.iconfinder.com%2Fdata%2Ficons%2Fwirecons-free-vector-icons%2F32%2Fmenu-alt-512.png"  width="55" height="55" class="icon" onclick="openMenu()">
+			<script>
+				function openMenu(){
+					document.getElementById("menu").style.display = 'block';
+				}
+			</script>
+		</div>
+		<div class="mobile" id="menu">
+			</br>
+			<p class="close_button" onclick="closeMenu()">  X </p>
+			<script>
+				function closeMenu(){
+					document.getElementById("menu").style.display = 'none';
+				}
+			</script>
+			<b> Item 1 </b> </br> </br>
+			<b> Item 2 </b> </br> </br>
+			<b> Item 3 </b> </br> </br>
+			<b> Item 4 </b> </br> </br>
+			
+		</div>
+
+		<div class="header">
+			<p class="header title message" id="chgtext" onclick="changeText()"> <b> Welcome Message </b> </p>
+			<script>
+				function changeText(){
+					document.getElementById('chgtext').innerHTML = '<b>Have a Good Time</b>';
+				}
+			</script>
+		</div>
+		<div class="total">
+
+			<h1 class="title"> Section Title </h1> 
+
+			<div class="content left">
+				<p class="title"> Content box 1 </p>
+			</div>
+			<div class="content right">
+				<p class="title"> Content box 2 </p>
+			</div>
+
+			<div class="content left">
+				<p class="title"> Content box 3 </p>
+			</div>
+			<div class="content right">
+				<p class="title"> Content box 4 </p>
+			</div>
+		</div>
+
+		<div style="text-align: center;">
+			<button type="button" class="button" onclick="moreBoxes()">Call to Action</button>
+		</div>
+		<script>
+			function moreBoxes(){
+					document.getElementsByClassName("more_boxes")[0].style.display = 'block';
+			}
+		</script>
+		<div class="total more_boxes">
+			<div class="content left">
+				<p class="title"> Content box 1 </p>
+			</div>
+			<div class="content right">
+				<p class="title"> Content box 2 </p>
+			</div>
+
+			<div class="content left">
+				<p class="title"> Content box 3 </p>
+			</div>
+			<div class="content right">
+				<p class="title"> Content box 4 </p>
+			</div>
+		</div>
+
+	</body>
+</html>
